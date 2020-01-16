@@ -10,61 +10,91 @@
 // Output: ["o","l","l","e","H"]
 
 // Function 1
-public class Solution {
-  public void ReverseString(char[] charList){
-    char key;
-    int left = 0;
-    int right = charList.Length - 1;
-    while( left <= right ){
-      key = charList[left];
-      charList[left++] = charList[right];
-      charList[right--] = key;
+using System;
+
+namespace ReverseString {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            char[] charList = new char[] { 'h', 'a', '@', 'G', ' ', '2' };
+            solution.ReverseString(charList);
+            foreach (char item in charList) {
+                Console.WriteLine(item);
+            }
+        }
     }
-  }
+
+    public class Solution {
+        public void ReverseString(char[] charList) {
+            char key;
+            int left = 0;
+            int right = charList.Length - 1;
+            while (left <= right) {
+                key = charList[left];
+                charList[left++] = charList[right];
+                charList[right--] = key;
+            }
+        }
+    }
 }
 
 // Function 2
-public class Solution {
-  public void ReverseString(char[] charList){
-    HelpFounction(charList,0,charList.Length-1);
-  }
+using System;
 
-  public void HelpFounction(char[] charList, int left, int right){
-    if( left >= right){
-      return;
+namespace ReverseString {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            char[] charList = new char[] { 'h', 'a', '@', 'G', ' ', '2' };
+            solution.ReverseString(charList);
+            foreach (char item in charList) {
+                Console.WriteLine(item);
+            }
+        }
     }
-    char key = charList[left];
-    charList[left++] = charList[right];
-    charList[right--] = key;
-    HelpFounction(charList,left,right);
-  }
+
+    public class Solution {
+        public void ReverseString(char[] charList) {
+            HelpFounction(charList, 0, charList.Length - 1);
+        }
+
+        public void HelpFounction(char[] charList, int left, int right) {
+            if (left >= right) {
+                return;
+            }
+            char key = charList[left];
+            charList[left++] = charList[right];
+            charList[right--] = key;
+            HelpFounction(charList, left, right);
+        }
+    }
 }
 
 // Python
-class Solution:
+class Solution :
     def reverseString(self, s):
         s.reverse()
 
 // Java
 class Solution {
-  public void helper(char[] s, int left, int right) {
-    if (left >= right) return;
-    char tmp = s[left];
-    s[left++] = s[right];
-    s[right--] = tmp;
-    helper(s, left, right);
-  }
+    public void helper(char[] s, int left, int right) {
+        if (left >= right) return;
+        char tmp = s[left];
+        s[left++] = s[right];
+        s[right--] = tmp;
+        helper(s, left, right);
+    }
 
-  public void reverseString(char[] s) {
-    helper(s, 0, s.length - 1);
-  }
+    public void reverseString(char[] s) {
+        helper(s, 0, s.length - 1);
+    }
 }
 
 // Python
-class Solution:
+class Solution :
     def reverseString(self, s):
         def helper(left, right):
-            if left < right:
+            if left<right:
                 s[left], s[right] = s[right], s[left]
                 helper(left + 1, right - 1)
 
@@ -83,9 +113,9 @@ class Solution {
 }
 
 // Python
-class Solution:
+class Solution :
     def reverseString(self, s):
         left, right = 0, len(s) - 1
-        while left < right:
+        while left<right:
             s[left], s[right] = s[right], s[left]
             left, right = left + 1, right - 1
