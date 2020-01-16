@@ -23,6 +23,10 @@
 //  [1,4,6,4,1]
 // ]
 
+//                   numRows(numRows + 1)       numRows^2 + numRows       numRows^2       numRows
+// Time complexity:-----------------------  = ----------------------- = ------------- + ----------- = O(numRows^2)
+//                           2                             2                   2              2
+
 using System;
 using System.Collections.Generic;
 
@@ -55,9 +59,7 @@ namespace PascalsTriangle {
                 IList<int> prevRow = triangle[i - 1];
 
                 // In every row the first element was always 1
-                List<int> row = new List<int> {
-                1
-            };
+                List<int> row = new List<int> { 1 };
 
                 for (int j = 1; j < i; j++) {
                     row.Add(prevRow[j - 1] + prevRow[j]);
@@ -69,6 +71,102 @@ namespace PascalsTriangle {
                 triangle.Add(row);
             }
             return triangle;
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace PascalsTriangle {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            int key = 1;
+            IList<IList<int>> triangle = solution.Generate(key);
+            for (int i = 0; i < key; i++) {
+                for (int j = 0; j <= i; j++) {
+                    Console.Write(triangle[i][j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+
+    public class Solution {
+        public IList<IList<int>> Generate(int numRows) {
+            // use recursion, depth is num of elements
+            // the first and last item must be a 1
+            // then loop through previous depth row elements
+            // add each pair together to populate elements in new depth
+
+            IList<IList<int>> results = new List<IList<int>>();
+
+            if (numRows == 0) {
+                return results;
+            }
+
+            results.Add(new int[] { 1 });
+
+            // use numRows-1 because we've already added the first row manually
+            for (var i = 0; i < numRows - 1; i++) {
+                results.Add(getRow(results[i].ToArray()));
+            }
+
+            return results;
+        }
+
+        private int[] getRow(int[] prevRow) {
+            int[] newRow = new int[prevRow.Length + 1];
+            newRow[0] = 1;
+            newRow[newRow.Length - 1] = 1;
+
+            for (var i = 0; i < prevRow.Length - 1; i++) {
+                newRow[i + 1] = prevRow[i] + prevRow[i + 1];
+            }
+
+            return newRow;
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+
+namespace PascalsTriangle {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            int key = 5;
+            IList<IList<int>> triangle = solution.Generate(key);
+            for (int i = 0; i < key; i++) {
+                string clean = new string(' ', key - i);
+                Console.Write($"{clean}");
+                for (int j = 0; j <= i; j++) {
+                    Console.Write(triangle[i][j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+
+    public class Solution {
+        public IList<IList<int>> Generate(int numRows) {
+            IList<IList<int>> list = new List<IList<int>>(numRows);
+            for (int line = 1; line <= numRows; line++) {
+                int key = 1;
+                List<int> inner = new List<int>();
+                for (int i = 1; i <= line; i++) {
+                    inner.Add(key);
+                    // a=[1,4,6,4,1]   
+                    // 在下标为 2 的地方计算下标为 3 的值 a[3] = a[2] * (row - 2) / 2
+                    // 在下标为 3 的地方计算下标为 4 的值 a[4] = a[3] * (row - 3) / 3
+                    key = key * (line - i) / i;
+                }
+                list.Add(inner);
+            }
+            return list;
         }
     }
 }
@@ -145,7 +243,7 @@ namespace PascalsTriangle {
         static void Main(string[] args) {
             Solution solution = new Solution();
             int key = 1;
-            var val = solution.Generate(key);
+            IList<int> val = solution.Generate(key);
             foreach (int item in val) {
                 Console.Write(item + " ");
             }
@@ -174,9 +272,7 @@ namespace PascalsTriangle {
                 IList<int> prevRow = triangleList[i - 1];
 
                 // In every row the first element was always 1
-                List<int> row = new List<int> {
-                1
-            };
+                List<int> row = new List<int> { 1 };
 
                 for (int j = 1; j < i; j++) {
                     row.Add(prevRow[j - 1] + prevRow[j]);
@@ -192,6 +288,75 @@ namespace PascalsTriangle {
                 }
             }
             return triangle;
+        }
+    }
+}
+
+// Use Queue 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace PascalsTriangle {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            int key = 6;
+            IList<int> val = solution.Generate(key);
+            foreach (int item in val) {
+                Console.Write(item + " ");
+            }
+        }
+    }
+
+    public class Solution {
+        public IList<int> Generate(int rowIndex) {
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
+            for (int i = 0; i < rowIndex; i++) {
+                int key = 0;
+                for (int j = 0; j <= i; j++) {
+                    int tmp = queue.Dequeue();
+                    queue.Enqueue(tmp + key);
+                    key = tmp;
+                }
+                queue.Enqueue(key);
+            }
+            return queue.ToList();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+
+namespace PascalsTriangle {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            int key = 1;
+            IList<int> val = solution.Generate(key);
+            foreach (int item in val) {
+                Console.Write(item + " ");
+            }
+        }
+    }
+
+    public class Solution {
+        public IList<int> Generate(int rowIndex) {
+            var ret = new List<int>();
+            ret.Add(1);
+
+            for (int i = 1; i <= rowIndex; i++) {
+                //move backwards to be able to rewrite the same row in-place as it uses only pre elems
+                for (int j = i; j > 0; j--) {
+                    if (j == i)
+                        ret.Add(1);
+                    else
+                        ret[j] = (ret[j - 1] + ret[j]);
+                }
+            }
+            return ret;
         }
     }
 }
