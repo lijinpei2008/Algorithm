@@ -51,23 +51,17 @@ namespace PascalsTriangle {
             if (numRows <= 0) {
                 return triangle;
             }
-
             triangle.Add(new List<int> { 1 });
-
             for (int i = 1; i < numRows; i++) {
                 // Get last row data
                 IList<int> prevRow = triangle[i - 1];
-
                 // In every row the first element was always 1
                 List<int> row = new List<int> { 1 };
-
                 for (int j = 1; j < i; j++) {
                     row.Add(prevRow[j - 1] + prevRow[j]);
                 }
-
                 // In every row the first element was always 1
                 row.Add(1);
-
                 triangle.Add(row);
             }
             return triangle;
@@ -100,20 +94,15 @@ namespace PascalsTriangle {
             // the first and last item must be a 1
             // then loop through previous depth row elements
             // add each pair together to populate elements in new depth
-
             IList<IList<int>> results = new List<IList<int>>();
-
             if (numRows == 0) {
                 return results;
             }
-
             results.Add(new int[] { 1 });
-
             // use numRows-1 because we've already added the first row manually
             for (var i = 0; i < numRows - 1; i++) {
                 results.Add(getRow(results[i].ToArray()));
             }
-
             return results;
         }
 
@@ -121,11 +110,9 @@ namespace PascalsTriangle {
             int[] newRow = new int[prevRow.Length + 1];
             newRow[0] = 1;
             newRow[newRow.Length - 1] = 1;
-
             for (var i = 0; i < prevRow.Length - 1; i++) {
                 newRow[i + 1] = prevRow[i] + prevRow[i + 1];
             }
-
             return newRow;
         }
     }
@@ -175,33 +162,26 @@ namespace PascalsTriangle {
 class Solution {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> triangle = new ArrayList<List<Integer>>();
-
         // First base case; if user requests zero rows, they get zero rows.
         if (numRows == 0) {
             return triangle;
         }
-
         // Second base case; first row is always [1].
         triangle.add(new ArrayList<>());
         triangle.get(0).add(1);
-
         for (int rowNum = 1; rowNum < numRows; rowNum++) {
             List<Integer> row = new ArrayList<>();
             List<Integer> prevRow = triangle.get(rowNum - 1);
-
             // The first row element is always 1.
             row.add(1);
-
             // Each triangle element (other than the first and last of each row)
             // is equal to the sum of the elements above-and-to-the-left and
             // above-and-to-the-right.
             for (int j = 1; j < rowNum; j++) {
                 row.add(prevRow.get(j - 1) + prevRow.get(j));
             }
-
             // The last row element is always 1.
             row.add(1);
-
             triangle.add(row);
         }
 
@@ -213,19 +193,15 @@ class Solution {
 class Solution :
     def generate(self, num_rows):
         triangle = []
-
         for row_num in range(num_rows) :
             # The first and last row elements are always 1.
             row = [None for _ in range(row_num + 1)]
             row[0], row[-1] = 1, 1
-
             # Each triangle element is equal to the sum of the elements
             # above-and-to-the-left and above-and-to-the-right.
             for j in range(1, len(row)-1) :
                 row[j] = triangle[row_num - 1][j - 1] + triangle[row_num - 1][j]
-
                 triangle.append(row)
-
         return triangle
 
 // Given a non-negative index k where k ≤ 33, return the kth index row of the Pascal's triangle.
@@ -254,35 +230,25 @@ namespace PascalsTriangle {
         public IList<int> Generate(int rowIndex) {
             IList<int> triangle = new List<int>();
             IList<IList<int>> triangleList = new List<IList<int>>();
-
             if (rowIndex < 0) {
                 return triangle;
             }
-
             triangle.Add(1);
-
             if (rowIndex == 0) {
                 return triangle;
             }
-
             triangleList.Add(new List<int> { 1 });
-
             for (int i = 1; i <= rowIndex; i++) {
                 // Get last row data
                 IList<int> prevRow = triangleList[i - 1];
-
                 // In every row the first element was always 1
                 List<int> row = new List<int> { 1 };
-
                 for (int j = 1; j < i; j++) {
                     row.Add(prevRow[j - 1] + prevRow[j]);
                 }
-
                 // In every row the first element was always 1
                 row.Add(1);
-
                 triangleList.Add(row);
-
                 if (i == rowIndex) {
                     triangle = row;
                 }
@@ -346,7 +312,6 @@ namespace PascalsTriangle {
         public IList<int> Generate(int rowIndex) {
             var ret = new List<int>();
             ret.Add(1);
-
             for (int i = 1; i <= rowIndex; i++) {
                 //move backwards to be able to rewrite the same row in-place as it uses only pre elems
                 for (int j = i; j > 0; j--) {
