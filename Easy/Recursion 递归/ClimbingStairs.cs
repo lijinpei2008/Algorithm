@@ -19,12 +19,50 @@
 
 // To reach nth step, what could have been your previous steps? (Think about the step sizes)
 
-public int ClimbStairs(int n) {
-    int a = 1, b = 1;
-    while (n-- > 0)
-        a = (b += a) - a;
-    return a;
+using System;
+
+namespace ClimbingStairs {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            int num = solution.ClimbStairs(2);
+            Console.WriteLine(num);
+        }
+    }
+
+    public class Solution {
+        public int ClimbStairs(int n) {
+            int a = 1, b = 1;
+            while (n-- > 0)
+                a = (b += a) - a;
+            return a;
+        }
+    }
 }
+
+using System;
+using System.Collections.Generic;
+
+namespace ClimbingStairs {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            int num = solution.ClimbStairs(2);
+            Console.WriteLine(num);
+        }
+    }
+
+    public class Solution {
+        public int ClimbStairs(int n) {
+            List<int> list = new List<int>() { 1, 1 };
+            for (int i = 2; i <= n; i++) {
+                list.Add(list[i - 1] + list[i - 2]);
+            }
+            return list[n];
+        }
+    }
+}
+
 
 // Each time you can either climb 1 , 2 or 3 steps.In how many distinct ways can you climb to the top?
 // It's still a varient of the Fibonacci sequence.

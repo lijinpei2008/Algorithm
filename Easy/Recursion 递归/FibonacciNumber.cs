@@ -63,9 +63,8 @@ class Solution {
 # Contributed by LeetCode user mereck.
 class Solution :
   def fib(self, N):
-
-      golden_ratio = (1 + 5 ** 0.5) / 2
-  	return int((golden_ratio** N + 1) / 5 ** 0.5)
+    golden_ratio = (1 + 5 ** 0.5) / 2
+    return int((golden_ratio** N + 1) / 5 ** 0.5)
 
 // Go
 func fib(N int) int {
