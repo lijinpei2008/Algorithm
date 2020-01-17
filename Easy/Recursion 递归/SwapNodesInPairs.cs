@@ -289,3 +289,75 @@ namespace SwapNodesInPairs {
         }
     }
 }
+
+// Merge two sorted linked lists and return it as a new list.The new list should be made by splicing together the nodes of the first two lists.
+
+// Example:
+// Input: 1->2->4,    1->3->4
+// Output: 1->1->2->3->4->4
+using System;
+
+namespace SwapNodesInPairs {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            ListNode node1 = new ListNode {
+                val = 1,
+                next = new ListNode {
+                    val = 4,
+                    next = new ListNode {
+                        val = 9,
+                        next = null
+                    }
+                }
+            };
+            ListNode node2 = new ListNode {
+                val = 1,
+                next = new ListNode {
+                    val = 3,
+                    next = new ListNode {
+                        val = 6,
+                        next = new ListNode {
+                            val = 10,
+                            next = null
+                        }
+                    }
+                }
+            };
+            ListNode node = solution.MergeTwoLists(node1, node2);
+            Cw(node);
+        }
+        private static void Cw(ListNode node) {
+            Console.WriteLine(node.val);
+            if (node.next != null) {
+                Cw(node.next);
+            }
+        }
+    }
+
+    public class ListNode {
+        public int val;
+        public ListNode next;
+        public ListNode() { }
+        public ListNode(int x) { val = x; }
+    }
+
+    public class Solution {
+        public ListNode MergeTwoLists(ListNode node1, ListNode node2) {
+            if (node1 == null) {
+                return node2;
+            }
+            if (node2 == null) {
+                return node1;
+            }
+            if (node1.val <= node2.val) {
+                node1.next = MergeTwoLists(node1.next, node2);
+                return node1;
+            }
+            else {
+                node2.next = MergeTwoLists(node1, node2.next);
+                return node2;
+            }
+        }
+    }
+}
