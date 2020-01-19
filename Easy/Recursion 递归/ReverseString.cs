@@ -9,7 +9,6 @@
 // Input: ["H","e","l","l","o"]
 // Output: ["o","l","l","e","H"]
 
-// Function 1
 using System;
 
 namespace ReverseString {
@@ -38,7 +37,6 @@ namespace ReverseString {
     }
 }
 
-// Function 2
 using System;
 
 namespace ReverseString {
@@ -66,6 +64,28 @@ namespace ReverseString {
             charList[left++] = charList[right];
             charList[right--] = key;
             HelpFounction(charList, left, right);
+        }
+    }
+}
+
+using System;
+
+namespace ReverseString {
+    public class Program {
+        static void Main(string[] args) {
+            Solution solution = new Solution();
+            string str = "Hello World !";
+            solution.ClimbStairs(str, 0);
+        }
+    }
+
+    public class Solution {
+        public void ClimbStairs(string str, int n) {
+            if (n == str.Length - 1) {
+                return;
+            }
+            ClimbStairs(str, ++n);
+            Console.Write(str[n]);
         }
     }
 }
