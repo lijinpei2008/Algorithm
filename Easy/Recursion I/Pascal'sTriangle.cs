@@ -348,6 +348,7 @@ namespace PascalsTriangle {
 // row 2: 01        row 1 : 0 => 01
 // row 3: 0110      row 2 : 0 => 01, 1 => 10
 // row 4: 01101001  row 3 : 0 => 01, 1 => 10, 1 => 10, 0 => 01
+
 using System;
 
 namespace PascalsTriangle {
