@@ -3,6 +3,7 @@
 // F(0) = 0,   F(1) = 1
 // F(N) = F(N - 1) + F(N - 2), for N > 1.
 // Given N, calculate F(N).
+
 using System;
 using System.Collections.Generic;
 
@@ -51,6 +52,7 @@ namespace PascalsTriangle {
 // Intuition Using the golden ratio, a.k.a Binet's forumula: φ= (1 + √5) / 2 ≈1.6180339887....
 // We can derive the most efficient solution to this problem using only constant time and constant space!
 // Use the golden ratio formula to calculate the Nth Fibonacci number.
+
 // Java
 class Solution {
     public int fib(int N) {

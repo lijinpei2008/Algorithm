@@ -63,8 +63,7 @@ namespace ClimbingStairs {
     }
 }
 
-
 // Each time you can either climb 1 , 2 or 3 steps.In how many distinct ways can you climb to the top?
 // It's still a varient of the Fibonacci sequence.
-// 1,2,4,7,13,24……The value is equal to the sum of three numbers before the number.
+// 1,2,4,7,13,24...The value is equal to the sum of three numbers before the number.
 
