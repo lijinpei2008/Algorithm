@@ -321,7 +321,7 @@ namespace JuneSecond {
 //        ↙   ↘
 //  100 ↙       ↘ 500
 //    ↙    100    ↘
-// [1] →→→→→→ [2]
+// [1] ------------> [2]
 // The cheapest price from city 0 to city 2 with at most 1 stop costs 200, as marked red in the picture.
 
 // Example 2:
@@ -335,7 +335,7 @@ namespace JuneSecond {
 //        ↙   ↘
 //  100 ↙       ↘ 500
 //    ↙    100    ↘
-// [1] →→→→→→ [2]
+// [1] ------------> [2]
 // The cheapest price from city 0 to city 2 with at most 0 stop costs 500, as marked blue in the picture.
 
 // Constraints:
